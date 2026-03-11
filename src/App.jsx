@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Phone, PaintBucket, Hammer, ShieldCheck, ChevronRight, Instagram, Facebook, Paintbrush, Mail } from 'lucide-react';
+import { Phone, PaintBucket, Briefcase, Sparkles, ChevronRight, Instagram, Facebook, Paintbrush, Mail } from 'lucide-react';
 import './App.css';
 
 function App() {
@@ -93,29 +93,29 @@ function App() {
         </div>
       </section>
 
-      {/* Construction Materials Section */}
+      {/* Products & Services Section */}
       <section id="materials" className="materials-section section-padding">
         <div className="container animate-on-scroll">
           <div className="section-header">
-            <h2 className="heading-lg">Construction Materials</h2>
-            <p className="text-body-lg mt-2">Beyond paints, we provide base materials for solid structures.</p>
+            <h2 className="heading-lg">Products & Services</h2>
+            <p className="text-body-lg mt-2">Comprehensive painting solutions and material supply for every need.</p>
           </div>
           
           <div className="grid grid-cols-3 materials-grid">
             <div className="material-card glass-panel hover-lift">
-              <div className="icon-wrapper"><Hammer size={32} className="text-gradient-blue" /></div>
-              <h3 className="heading-md mt-4">Cement & Concrete</h3>
-              <p className="text-secondary mt-2">High-strength cement brands for all construction phases.</p>
+              <div className="icon-wrapper"><Briefcase size={32} className="text-gradient-blue" /></div>
+              <h3 className="heading-md mt-4">Industrial Paints</h3>
+              <p className="text-secondary mt-2">High-performance coatings and protective paints for industrial applications.</p>
             </div>
             <div className="material-card glass-panel hover-lift">
-              <div className="icon-wrapper"><ShieldCheck size={32} className="text-gradient-accent" /></div>
-              <h3 className="heading-md mt-4">TMT Bars & Steel</h3>
-              <p className="text-secondary mt-2">Durable and certified TMT bars to reinforce your building framework.</p>
+              <div className="icon-wrapper"><Sparkles size={32} className="text-gradient-accent" /></div>
+              <h3 className="heading-md mt-4">Decorative Paints</h3>
+              <p className="text-secondary mt-2">Vibrant and durable decorative colors to beautify your home or office space.</p>
             </div>
             <div className="material-card glass-panel hover-lift">
               <div className="icon-wrapper"><PaintBucket size={32} className="text-gradient" /></div>
-              <h3 className="heading-md mt-4">Waterproofing</h3>
-              <p className="text-secondary mt-2">Advanced waterproofing solutions to protect from moisture.</p>
+              <h3 className="heading-md mt-4">Apply Supply Services</h3>
+              <p className="text-secondary mt-2">End-to-end supply and professional application services for a flawless finish.</p>
             </div>
           </div>
         </div>
