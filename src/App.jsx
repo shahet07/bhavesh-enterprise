@@ -1,8 +1,12 @@
 import React, { useEffect } from 'react';
-import { Phone, PaintBucket, Briefcase, Sparkles, ChevronRight, Instagram, Facebook, Paintbrush, Mail } from 'lucide-react';
+import { Phone, PaintBucket, Briefcase, Sparkles, ChevronRight, Instagram, Facebook, Paintbrush, Mail, MapPin, ExternalLink } from 'lucide-react';
 import './App.css';
 
 function App() {
+  const businessAddress = '2, Merchant Chambers, Pratap Nagar Rd, Opposite Vihar Cinema, Navapura, Vadodara, Gujarat 390004, India';
+  const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(businessAddress)}`;
+  const googleMapsEmbedUrl = `https://www.google.com/maps?q=${encodeURIComponent(businessAddress)}&output=embed`;
+
   // Trigger animations on scroll
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -135,6 +139,23 @@ function App() {
                <div>
                  <span className="text-body-lg" style={{ fontSize: '1.5rem', fontWeight: '500' }}>bnshah2008@gmail.com</span>
                </div>
+               <div className="contact-address">
+                 <MapPin size={24} className="text-gradient-accent" />
+                 <span>{businessAddress}</span>
+               </div>
+            </div>
+
+            <div className="map-card">
+              <iframe
+                title="Bhavesh Enterprise location on Google Maps"
+                src={googleMapsEmbedUrl}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              ></iframe>
+              <a href={googleMapsUrl} className="map-link" target="_blank" rel="noreferrer">
+                <MapPin size={18} /> Open in Google Maps <ExternalLink size={16} />
+              </a>
             </div>
             
             <div className="contact-actions flex-center gap-4">
@@ -160,6 +181,10 @@ function App() {
               <span className="heading-md">Bhavesh Enterprise</span>
             </div>
             <p className="text-secondary mt-2">Your authorized paint and building material supplier.</p>
+            <p className="text-secondary footer-address mt-2">
+              <MapPin size={16} />
+              {businessAddress}
+            </p>
           </div>
           <div className="footer-social">
             <a href="#" className="social-icon"><Instagram /></a>
