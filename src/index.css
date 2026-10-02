@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 :root {
   /* Core Colors */
   --bg-primary: #0a0a0b;
@@ -29,8 +31,8 @@
   --gradient-glow: radial-gradient(circle at center, rgba(38, 132, 255, 0.15) 0%, transparent 70%);
 
   /* Typography */
-  --font-heading: 'Outfit', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  --font-heading: 'HelveticaNowDisplay-Medium', 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'HelveticaNowDisplayW01-Rg', 'Helvetica Neue', Arial, sans-serif;
   
   /* Borders & Shadows */
   --radius-sm: 8px;
@@ -70,7 +72,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
+  font-family: var(--font-body);
   line-height: 1.2;
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -87,7 +89,7 @@ ul {
 }
 
 button {
-  font-family: var(--font-heading);
+  font-family: var(--font-body);
   background: none;
   border: none;
   cursor: pointer;

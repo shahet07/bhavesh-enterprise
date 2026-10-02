@@ -184,7 +184,7 @@
 }
 
 .partner-logo {
-  font-family: var(--font-heading);
+  font-family: var(--font-body);
   font-size: 2.5rem;
   font-weight: 800;
   letter-spacing: -1px;
@@ -254,7 +254,7 @@
 }
 
 .huge-number {
-  font-family: var(--font-heading);
+  font-family: var(--font-body);
   font-size: clamp(3rem, 6vw, 5rem);
   font-weight: 800;
   letter-spacing: -0.05em;
@@ -385,4 +385,36 @@
   .footer-address {
     justify-content: center;
   }
+}
+
+/* Interactive scene and pointer lighting. */
+.hero-visual { position: relative; min-width: 0; }
+.paint-scene { position: relative; width: 100%; height: clamp(280px, 31vw, 420px); }
+.paint-scene canvas { position: absolute; inset: 0; display: block; pointer-events: none; }
+.hero-visual .main-card { padding: 1.5rem; background: rgba(14, 17, 23, 0.72); }
+.hero-visual .accent-icon { width: 32px; height: 32px; margin-bottom: 0.5rem; color: var(--accent-orange); }
+.material-card, .partner-card, .main-card { position: relative; isolation: isolate; transform: perspective(900px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)); transition: transform 220ms ease-out, border-color 220ms ease-out, box-shadow 220ms ease-out; }
+.material-card::after, .partner-card::after, .main-card::after { content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: radial-gradient(280px circle at var(--spot-x, 50%) var(--spot-y, 50%), #2684ff24, transparent 75%); opacity: 0; transition: opacity 250ms; }
+.pointer-active::after { opacity: 1; }
+.material-card.pointer-active, .partner-card.pointer-active, .main-card.pointer-active { transform: perspective(900px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateY(-5px); border-color: #2684ff66; }
+.cursor-aura { position: fixed; top: 0; left: 0; z-index: 200; pointer-events: none; opacity: 0; transition: opacity 180ms; }
+.cursor-aura.is-visible { opacity: 1; }
+.cursor-aura span { display: block; width: 36px; height: 36px; margin: -18px; border: 1px solid #ff975b99; border-radius: 50%; background: #ff69280a; box-shadow: 0 0 30px #ff69281a; transition: transform 200ms, border-color 200ms; }
+.cursor-aura.is-link span { transform: scale(1.6); border-color: #65aaff; }
+section[id] { scroll-margin-top: 100px; }
+a:focus-visible { outline: 2px solid #73b4ff; outline-offset: 6px; }
+@media (max-width: 640px) {
+  .hero { background-attachment: scroll; }
+  .hero-actions { flex-wrap: wrap; }
+  .hero-content { gap: 2rem; }
+  .huge-number { font-size: clamp(1.65rem, 7vw, 3rem); }
+  .contact-number-display { overflow-wrap: anywhere; }
+}
+@media (hover: none), (pointer: coarse) { .cursor-aura { display: none; } }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-delay: 0ms !important; transition-duration: 0.01ms !important; }
+  .animate-on-scroll { opacity: 1 !important; transform: none !important; }
+  .cursor-aura { display: none; }
+  .material-card, .partner-card, .main-card { transform: none !important; }
 }

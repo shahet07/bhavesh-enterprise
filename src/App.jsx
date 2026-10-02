@@ -1,6 +1,10 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Phone, PaintBucket, Briefcase, Sparkles, ChevronRight, Instagram, Facebook, Paintbrush, Mail, MapPin, ExternalLink } from 'lucide-react';
 import './App.css';
+import PaintScene from './PaintScene';
+import CursorEffects from './CursorEffects';
+import ColorStudio from './ColorStudio';
+import AgencyHero from './AgencyHero';
 
 function App() {
   const businessAddress = '2, Merchant Chambers, Pratap Nagar Rd, Opposite Vihar Cinema, Navapura, Vadodara, Gujarat 390004, India';
@@ -13,6 +17,7 @@ function App() {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('animate-fade-in');
+          observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.1 });
@@ -28,55 +33,20 @@ function App() {
 
   return (
     <div className="app-container">
-      {/* Navbar */}
-      <nav className="navbar glass-panel">
-        <div className="container nav-content">
-          <div className="logo-container">
-            <PaintBucket className="logo-icon text-gradient-accent" size={32} />
-            <span className="logo-text heading-md">Bhavesh Enterprise</span>
+      <CursorEffects />
+      <AgencyHero />
+      <main className="business-content">
+      <section className="section-padding" aria-labelledby="business-intro-title">
+        <div className="container business-introduction">
+          <div>
+            <span className="studio-eyebrow">PREMIUM AUTHORISED DEALERS</span>
+            <h2 id="business-intro-title" className="heading-lg">Vibrant Colors.<br />Strong Foundations.</h2>
+            <p className="text-body-lg">We are your trusted agency for AsianPaints, Berger Paints, and top-tier construction materials. Build and beautify with confidence.</p>
+            <div className="hero-actions mt-8"><a href="#materials" className="btn btn-primary">Explore Materials <ChevronRight size={20} /></a><a href="#contact" className="btn btn-outline">Contact Us</a></div>
           </div>
-          <ul className="nav-links">
-            <li><a href="#brands">Brands</a></li>
-            <li><a href="#materials">Materials</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-          <a href="tel:+919824061453" className="btn btn-accent nav-contact-btn">
-            <Phone size={18} /> Call +91 9824061453
-          </a>
+          <div><PaintScene /><div className="main-card glass-panel"><Paintbrush size={32} className="accent-icon" /><h3 className="heading-md">AsianPaints & Berger</h3><p className="text-body-lg mt-2">Full catalog available instantly.</p></div></div>
         </div>
-      </nav>
-
-      {/* Hero Section */}
-      <header className="hero section-padding">
-        <div className="hero-bg-glow"></div>
-        <div className="container hero-content">
-          <div className="hero-text animate-on-scroll">
-            <div className="badge glass-panel">💎 Premium Authorised Dealers</div>
-            <h1 className="heading-xl">
-              Transform Your Space With <span className="text-gradient">Vibrant Colors</span> & <span className="text-gradient-accent">Strong Foundations</span>
-            </h1>
-            <p className="text-body-lg hero-subtext">
-              We are your trusted agency for AsianPaints, Berger Paints, and top-tier construction materials. Build and beautify with confidence.
-            </p>
-            <div className="hero-actions">
-              <a href="#materials" className="btn btn-primary">
-                Explore Materials <ChevronRight size={20} />
-              </a>
-              <a href="#contact" className="btn btn-outline">
-                Contact Us
-              </a>
-            </div>
-          </div>
-          <div className="hero-visual animate-on-scroll delay-200">
-            {/* Abstract representation of paint and building */}
-            <div className="abstract-card main-card glass-panel">
-               <Paintbrush size={64} className="text-gradient-accent accent-icon" />
-               <h3 className="heading-md">AsianPaints & Berger</h3>
-               <p className="text-body-lg mt-2">Full catalog available instantly.</p>
-            </div>
-          </div>
-        </div>
-      </header>
+      </section>
 
       {/* Brands / Partners Section */}
       <section id="brands" className="brands-section section-padding">
@@ -96,6 +66,8 @@ function App() {
           </div>
         </div>
       </section>
+
+      <ColorStudio />
 
       {/* Products & Services Section */}
       <section id="materials" className="materials-section section-padding">
@@ -195,6 +167,7 @@ function App() {
           <p>&copy; {new Date().getFullYear()} Bhavesh Enterprise. All rights reserved.</p>
         </div>
       </footer>
+      </main>
     </div>
   );
 }
