@@ -85,3 +85,23 @@
 .intro-description { display: inline-block; color: #252525; transform: translateZ(12px); }
 @keyframes intro-float { 0%, 100% { transform: translate3d(0, 0, 24px); } 50% { transform: translate3d(0, -5px, 34px); } }
 @media (prefers-reduced-motion: reduce) { .intro-depth, .intro-greeting, .intro-description { animation: none; transform: none; transition: none; } }
+
+/* Keep letterforms crisp; apply depth and motion only to the accent. */
+.agency-intro, .intro-depth, .intro-greeting, .intro-description {
+  filter: none !important;
+  text-shadow: none !important;
+  transform: none !important;
+  animation: none !important;
+  backface-visibility: visible;
+}
+.agency-intro { perspective: none; }
+.intro-depth { position: relative; padding-left: 16px; }
+.intro-depth::before {
+  content: ''; position: absolute; left: 0; top: 5px; bottom: 5px; width: 4px;
+  border-radius: 2px; background: #111;
+  transform: perspective(300px) rotateY(var(--intro-ry, 0deg));
+  box-shadow: 3px 2px 0 #777;
+  animation: intro-accent 4s ease-in-out infinite;
+}
+@keyframes intro-accent { 0%, 100% { translate: 0 0; } 50% { translate: 0 -4px; } }
+@media (prefers-reduced-motion: reduce) { .intro-depth::before { animation: none; transform: none; } }
