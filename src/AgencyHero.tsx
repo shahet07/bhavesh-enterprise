@@ -24,6 +24,7 @@ function useTypewriter(text: string, speed = 38, startDelay = 600) {
 
 export default function AgencyHero() {
   const backdropRef = useRef<HTMLDivElement>(null);
+  const introRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -38,6 +39,8 @@ export default function AgencyHero() {
       frame = 0;
       backdrop.style.setProperty('--painter-x', `${x}px`);
       backdrop.style.setProperty('--painter-y', `${y}px`);
+      introRef.current?.style.setProperty('--intro-rx', `${y * 0.65}deg`);
+      introRef.current?.style.setProperty('--intro-ry', `${-x * 0.65}deg`);
     };
     const move = (event: PointerEvent) => {
       if (motion.matches || event.pointerType !== 'mouse' || document.hidden || window.scrollY > innerHeight) return;
@@ -93,7 +96,7 @@ export default function AgencyHero() {
     <div ref={menuRef} id="mobile-navigation" className={`agency-mobile-menu md:hidden ${menuOpen ? 'is-open' : ''}`} inert={!menuOpen} aria-hidden={!menuOpen}>{links.map(([label, href]) => <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}</a>)}<a href="#contact" onClick={() => setMenuOpen(false)}>Get in touch</a><a href="tel:+919824061453">+91 9824061453</a></div>
     <header id="home" className="agency-hero relative flex flex-col overflow-hidden px-5 sm:px-8 md:px-10">
       <div className="agency-hero-content relative">
-        <div className="agency-intro" aria-hidden="true">Hey there, meet Bhavesh Enterprise,<br />your partner in paint & building materials.</div>
+        <div ref={introRef} className="agency-intro"><div className="intro-depth"><span className="intro-greeting">Hey there, meet Bhavesh Enterprise,</span><br /><span className="intro-description">your partner in paint & building materials.</span></div></div>
         <h1 className="agency-typewriter"><span className="sr-only">{intro}</span><span aria-hidden="true">{displayed}{!done && <span className="typing-caret" />}</span></h1>
         <div className="agency-actions flex flex-wrap">
           <a href="#color-studio" className="agency-pill">Find your color</a><a href="#materials" className="agency-pill">Explore materials</a><a href="https://wa.me/919824061453" target="_blank" rel="noreferrer" className="agency-pill">Send a brief hello</a><a href="#brands" className="agency-pill">Meet our brands</a>
